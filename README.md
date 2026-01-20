@@ -144,22 +144,68 @@ When asked how you would like to set up, select **Set up for personal use**.
 **Important:** To keep your malware lab isolated and avoid forced updates, select **Offline account** (sometimes located under "Sign in options" or disconnected from the internet).
 ![Offline Account](Images/10.png)
 
-*(Proceed through the rest of the Windows prompts, declining data collection and Cortana to keep the VM lightweight.)*
+**3. User Account:**
+Enter a username (e.g., `flarevm`). You can skip the password if you want the VM to log in automatically, which is convenient for a lab environment.
+![Account Name](Images/11.png)
+
+**4. Privacy Settings:**
+**Turn OFF everything.** Since this is a malware analysis lab, you want to minimize background "chatter" and data collection sending info back to Microsoft.
+![Privacy Settings](Images/12.jpg)
+
+**5. Desktop Ready:**
+Once the setup finishes, you will land on the Windows Desktop.
+![Windows Desktop](Images/13.jpg)
 
 ---
 
-## Phase 4: FLARE-VM Script Installation
-*(Screenshots and steps for the PowerShell script execution will be added here once the VM is booted and ready.)*
+## Phase 4: System Preparation (Crucial)
+**STOP!** Before installing FLARE-VM, you **must** permanently disable Windows Updates and Windows Defender. If you skip this, Windows will delete your tools and break the installation.
 
-![Images/11](Images/11.png)
-![Images/12](Images/12.png)
-![Images/13](Images/13.png)
-![Images/14](Images/14.png)
-![Images/15](Images/15.png)
-![Images/16](Images/16.png)
-![Images/17](Images/17.png)
-![Images/18](Images/18.png)
-![Images/19](Images/19.png)
+### Step A: Accessing Group Policy Editor
+Instead of just using the settings menu (which Windows often turns back on), we will use the **Group Policy Editor** for a permanent fix.
+
+1.  Click the Start button and type **"Edit group policy"**.
+2.  Hit Enter to open it.
+![Group Policy Search](Images/16.jpg)
+
+### Step B: Disable Automatic Updates
+FLARE-VM installation takes a long time. If Windows decides to update and reboot in the middle, the installation will break.
+
+1.  In the editor, go to:
+    `Computer Configuration` > `Administrative Templates` > `Windows Components`
+    ![Windows Components](Images/17.jpg)
+
+2.  Scroll down to find **Windows Update**.
+3.  Double-click on **Configure Automatic Updates**.
+    ![Configure Updates](Images/18.jpg)
+
+4.  Select **Disabled** and click **OK**.
+    ![Updates Disabled](Images/19.jpg)
+
+### Step C: Disable Microsoft Defender
+Windows Defender is the enemy of this lab. It will flag your analysis tools as viruses.
+
+1.  In the same "Windows Components" list, find **Microsoft Defender Antivirus**.
+2.  Double-click on **Turn off Microsoft Defender Antivirus**.
+    ![Disable Defender Policy](Images/20.jpg)
+
+3.  Set this to **Enabled** (this logic is tricky: "Enabled" means you are *enabling the Turn Off feature*). Click **OK**.
+
+### Step D: Verification
+Open **Windows Security** from the start menu to confirm your settings are taking effect.
+![Windows Security Menu](Images/14.jpg)
+
+You should see the "Virus & threat protection" area. If you successfully applied the Group Policy, Defender should be curbed.
+![Security Glance](Images/15.jpg)
+
+---
+
+## Phase 5: Snapshot & Install
+**1. Take a Snapshot:**
+Now that Windows is configured but clean, go to your VirtualBox menu and take a **Snapshot**. Name it "Clean Base". If the installation fails, you can revert to this point instantly.
+
+**2. Run the Installer:**
+(Follow the standard installation instructions to download and run the `install.ps1` script).
 
 
 
