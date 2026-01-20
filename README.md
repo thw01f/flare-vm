@@ -91,6 +91,91 @@ Using the installer GUI you may customize:
 
 ![Installer GUI](Images/installer-gui.png)
 
+
+---
+# Beginer's Installation Guide (Step-by-Step)
+
+This guide provides a beginner-friendly, visual walkthrough for installing FLARE-VM. Follow these steps carefully to avoid common errors.
+
+## Phase 1: Virtual Machine (VM) Setup
+Before running any scripts, you must ensure your Virtual Machine (VM) is configured correctly. If these settings are wrong, the installation **will fail**.
+
+1.  **Create a New VM:** Use Windows 10 Enterprise or Pro.
+2.  **Configure Hardware:**
+    * **Disk Size:** Minimum **60 GB** (80 GB is recommended). *FLARE-VM installs many tools and needs space.*
+    * **RAM:** Minimum **4 GB**.
+    * **Network:** Ensure the VM has Internet access.
+
+> **Visual Check:** Your VM settings should look similar to this:
+>
+> ![VM Hardware Settings](Images/vm-settings.png)
+> *(Make sure your Hard Disk is set to 70GB)*
+
+## Phase 2: Disabling Windows Defender (Crucial!)
+FLARE-VM consists of malware analysis tools. Windows Defender will aggressively try to delete them. You **must** disable it completely before starting.
+
+1.  Open **Windows Security** settings.
+2.  Go to **Virus & threat protection** > **Manage settings**.
+3.  Turn **OFF** "Tamper Protection" and "Real-time protection".
+
+> **Visual Check:** Ensure all toggles are set to Off:
+>
+> ![Windows Defender Disabled](Images/defender-off.png)
+
+*Note: For a permanent fix, it is recommended to disable Defender via Group Policy (gpedit.msc) as described in the advanced instructions above.*
+
+## Phase 3: Running the Installer
+1.  **Open PowerShell as Administrator:**
+    * Right-click the Start button.
+    * Select **Windows PowerShell (Admin)**.
+
+> ![PowerShell Admin Menu](Images/powershell-admin-menu.png)
+
+2.  **Download the Script:**
+    Copy and paste the download command (found in the "Installation instruction" section above) into the PowerShell window and hit Enter.
+
+3.  **Unblock and Execute:**
+    Run the following commands one by one:
+    ```powershell
+    Unblock-File .\install.ps1
+    Set-ExecutionPolicy Unrestricted -Force
+    .\install.ps1
+    ```
+
+> **Visual Check:** Your PowerShell window should look like this before you hit Enter on the final command:
+>
+> ![PowerShell Commands](Images/powershell-commands.png)
+
+4.  **Enter Your Password:**
+    The script will ask for your current user password. This is required so the VM can automatically log back in after rebooting.
+
+## Phase 4: The Waiting Game
+Once the installation starts, a **Boxstarter** window (a black console window) will appear.
+* **DO NOT CLOSE THIS WINDOW.**
+* The VM will restart multiple times automatically.
+* This process can take **1–3 hours** depending on your internet speed.
+
+> ![Boxstarter Installation Window](Images/boxstarter-running.png)
+
+## Phase 5: Success!
+You will know the installation is complete when:
+1.  The Boxstarter window closes.
+2.  Your desktop wallpaper changes to the FLARE-VM logo.
+3.  You see a folder named `FLARE` on your desktop.
+
+> ![Final FLARE Desktop](Images/flare-desktop-final.png)
+
+**🛑 STOP:** Take a **VM Snapshot** immediately. This is your clean slate for malware analysis.
+
+
+
+
+
+
+
+
+---
+
 #### Configuration
 
 The installer will download [`config.xml`](https://raw.githubusercontent.com/mandiant/flare-vm/main/config.xml) from the FLARE-VM repository. This file contains the default configuration, including the list of packages to install and the environment variable paths. You may use your own configuration by specifying the CLI-argument `-customConfig` and providing either a local file path or URL to your `config.xml` file. For example:
