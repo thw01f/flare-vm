@@ -213,15 +213,6 @@ Now that Windows is configured but clean, go to your VirtualBox menu and take a 
 **2. Run the Installer:**
 (Follow the standard installation instructions to download and run the `install.ps1` script).
 
----
-
-## Phase 5: Snapshot & Install
-**1. Take a Snapshot:**
-Now that Windows is configured but clean, go to your VirtualBox menu and take a **Snapshot**. Name it "Clean Base". If the installation fails, you can revert to this point instantly.
-
-**2. Run the Installer:**
-(Follow the standard installation instructions to download and run the `install.ps1` script).
-
 
 
 ---
