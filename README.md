@@ -150,11 +150,11 @@ Enter a username (e.g., `flarevm`). You can skip the password if you want the VM
 
 **4. Privacy Settings:**
 **Turn OFF everything.** Since this is a malware analysis lab, you want to minimize background "chatter" and data collection sending info back to Microsoft.
-![Privacy Settings](Images/12.jpg)
+![Privacy Settings](Images/12.png)
 
 **5. Desktop Ready:**
 Once the setup finishes, you will land on the Windows Desktop.
-![Windows Desktop](Images/13.jpg)
+![Windows Desktop](Images/13.png)
 
 ---
 
@@ -166,21 +166,21 @@ Instead of just using the settings menu (which Windows often turns back on), we 
 
 1.  Click the Start button and type **"Edit group policy"**.
 2.  Hit Enter to open it.
-![Group Policy Search](Images/16.jpg)
+![Group Policy Search](Images/16.png)
 
 ### Step B: Disable Automatic Updates
 FLARE-VM installation takes a long time. If Windows decides to update and reboot in the middle, the installation will break.
 
 1.  In the editor, go to:
     `Computer Configuration` > `Administrative Templates` > `Windows Components`
-    ![Windows Components](Images/17.jpg)
+    ![Windows Components](Images/17.png)
 
 2.  Scroll down to find **Windows Update**.
 3.  Double-click on **Configure Automatic Updates**.
-    ![Configure Updates](Images/18.jpg)
+    ![Configure Updates](Images/18.png)
 
 4.  Select **Disabled** and click **OK**.
-    ![Updates Disabled](Images/19.jpg)
+    ![Updates Disabled](Images/19.png)
 
 ### Step C: Disable Microsoft Defender
 Windows Defender is the enemy of this lab. It will flag your analysis tools as viruses.
@@ -188,22 +188,22 @@ Windows Defender is the enemy of this lab. It will flag your analysis tools as v
 1.  In the same "Windows Components" list, find **Microsoft Defender Antivirus**.
 2.  Double-click on **Turn off Microsoft Defender Antivirus**.
 3.  Set this to **Enabled** (this logic is tricky: "Enabled" means you are *enabling the Turn Off feature*). Click **OK**.
-    ![Disable Defender Policy](Images/20.jpg)
+    ![Disable Defender Policy](Images/20.png)
 
 4.  **Extra Measure:** Go to the **Real-time Protection** folder (inside the Antivirus folder).
 5.  Double-click **Turn off real-time protection** and set it to **Enabled**.
-    ![Disable Real Time Protection](Images/22.jpg)
+    ![Disable Real Time Protection](Images/22.png)
 
 ### Step D: Verification
 1.  Open **Windows Security** from the start menu to confirm your settings are taking effect.
-    ![Windows Security Menu](Images/14.jpg)
+    ![Windows Security Menu](Images/14.png)
 
 2.  You should see the "Virus & threat protection" area. If you successfully applied the Group Policy, Defender should be curbed.
-    ![Security Glance](Images/15.jpg)
+    ![Security Glance](Images/15.png)
 
 ### Step E: Restart to Apply
 Group Policies often require a restart to fully lock in. Restart your VM now before proceeding.
-![Restart VM](Images/24.jpg)
+![Restart VM](Images/24.png)
 
 ---
 
