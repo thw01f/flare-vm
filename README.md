@@ -159,7 +159,7 @@ Once the setup finishes, you will land on the Windows Desktop.
 ---
 
 ## Phase 4: System Preparation (Crucial)
-**STOP!** Before installing FLARE-VM, you **must** permanently disable Windows Updates and Windows Defender. If you skip this, Windows will delete your tools and break the installation.
+**STOP!** Before installing FLARE-VM, you **must** permanently disable Windows Updates and Windows Defender via Group Policy. If you skip this, Windows will delete your tools and break the installation.
 
 ### Step A: Accessing Group Policy Editor
 Instead of just using the settings menu (which Windows often turns back on), we will use the **Group Policy Editor** for a permanent fix.
@@ -187,16 +187,32 @@ Windows Defender is the enemy of this lab. It will flag your analysis tools as v
 
 1.  In the same "Windows Components" list, find **Microsoft Defender Antivirus**.
 2.  Double-click on **Turn off Microsoft Defender Antivirus**.
+3.  Set this to **Enabled** (this logic is tricky: "Enabled" means you are *enabling the Turn Off feature*). Click **OK**.
     ![Disable Defender Policy](Images/20.jpg)
 
-3.  Set this to **Enabled** (this logic is tricky: "Enabled" means you are *enabling the Turn Off feature*). Click **OK**.
+4.  **Extra Measure:** Go to the **Real-time Protection** folder (inside the Antivirus folder).
+5.  Double-click **Turn off real-time protection** and set it to **Enabled**.
+    ![Disable Real Time Protection](Images/22.jpg)
 
 ### Step D: Verification
-Open **Windows Security** from the start menu to confirm your settings are taking effect.
-![Windows Security Menu](Images/14.jpg)
+1.  Open **Windows Security** from the start menu to confirm your settings are taking effect.
+    ![Windows Security Menu](Images/14.jpg)
 
-You should see the "Virus & threat protection" area. If you successfully applied the Group Policy, Defender should be curbed.
-![Security Glance](Images/15.jpg)
+2.  You should see the "Virus & threat protection" area. If you successfully applied the Group Policy, Defender should be curbed.
+    ![Security Glance](Images/15.jpg)
+
+### Step E: Restart to Apply
+Group Policies often require a restart to fully lock in. Restart your VM now before proceeding.
+![Restart VM](Images/24.jpg)
+
+---
+
+## Phase 5: Snapshot & Install
+**1. Take a Snapshot:**
+Now that Windows is configured but clean, go to your VirtualBox menu and take a **Snapshot**. Name it "Clean Base". If the installation fails, you can revert to this point instantly.
+
+**2. Run the Installer:**
+(Follow the standard installation instructions to download and run the `install.ps1` script).
 
 ---
 
