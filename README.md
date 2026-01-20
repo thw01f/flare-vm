@@ -161,6 +161,12 @@ Once the setup finishes, you will land on the Windows Desktop.
 ## Phase 4: System Preparation (Crucial)
 **STOP!** Before installing FLARE-VM, you **must** permanently disable Windows Updates and Windows Defender via Group Policy. If you skip this, Windows will delete your tools and break the installation.
 
+1.  Open **Windows Security** from the start menu to Turn off Microsoft Defender Antivirus Settings.
+    ![Windows Security Menu](Images/14.png)
+
+2.  Disable Microsoft Defender.
+    ![Security Glance](Images/15.png)
+
 ### Step A: Accessing Group Policy Editor
 Instead of just using the settings menu (which Windows often turns back on), we will use the **Group Policy Editor** for a permanent fix.
 
@@ -194,14 +200,7 @@ Windows Defender is the enemy of this lab. It will flag your analysis tools as v
 5.  Double-click **Turn off real-time protection** and set it to **Enabled**.
     ![Disable Real Time Protection](Images/22.png)
 
-### Step D: Verification
-1.  Open **Windows Security** from the start menu to confirm your settings are taking effect.
-    ![Windows Security Menu](Images/14.png)
-
-2.  You should see the "Virus & threat protection" area. If you successfully applied the Group Policy, Defender should be curbed.
-    ![Security Glance](Images/15.png)
-
-### Step E: Restart to Apply
+### Step D: Restart to Apply
 Group Policies often require a restart to fully lock in. Restart your VM now before proceeding.
 ![Restart VM](Images/24.png)
 
@@ -308,4 +307,3 @@ Subscribe to the FLARE mailing list for community announcements! Email "subscrib
 ## Legal Notice
 > This download configuration script is provided to assist cyber security analysts in creating handy and versatile toolboxes for malware analysis environments. It provides a convenient interface for them to obtain a useful set of analysis tools directly from their original sources. Installation and use of this script is subject to the Apache 2.0 License. You as a user of this script must review, accept and comply with the license terms of each downloaded/installed package. By proceeding with the installation, you are accepting the license terms of each package, and acknowledging that your use of each package will be subject to its respective license terms.
 
----
