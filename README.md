@@ -95,82 +95,71 @@ Using the installer GUI you may customize:
 ---
 # Beginer's Installation Guide (Step-by-Step)
 
-This guide provides a beginner-friendly, visual walkthrough for installing FLARE-VM. Follow these steps carefully to avoid common errors.
+This guide provides a visual walkthrough for setting up your lab environment using VirtualBox and Windows 10, specifically tailored for FLARE-VM.
 
-## Phase 1: Virtual Machine (VM) Setup
-Before running any scripts, you must ensure your Virtual Machine (VM) is configured correctly. If these settings are wrong, the installation **will fail**.
+## Phase 1: Virtual Machine Configuration
 
-1.  **Create a New VM:** Use Windows 10 Enterprise or Pro.
-2.  **Configure Hardware:**
-    * **Disk Size:** Minimum **60 GB** (80 GB is recommended). *FLARE-VM installs many tools and needs space.*
-    * **RAM:** Minimum **4 GB**.
-    * **Network:** Ensure the VM has Internet access.
+**1. Create New VM:**
+Open VirtualBox and create a new machine. Name it `FlareVM` and select your Windows 10 ISO.
+![VM Creation](Images/2.png)
 
-> **Visual Check:** Your VM settings should look similar to this:
->
-> ![VM Hardware Settings](Images/vm-settings.png)
-> *(Make sure your Hard Disk is set to 70GB)*
+**2. Hardware Allocation:**
+* **Memory (RAM):** Set to at least **4096 MB** (4GB).
+* **Processors:** Allocate at least **2 CPUs** for smooth performance.
+![Hardware Settings](Images/3.png)
 
-## Phase 2: Disabling Windows Defender (Crucial!)
-FLARE-VM consists of malware analysis tools. Windows Defender will aggressively try to delete them. You **must** disable it completely before starting.
+**3. Hard Disk Setup (Crucial):**
+Set the disk size to at least **70.00 GB**. FLARE-VM requires significant space for tools; the default 50GB is often insufficient.
+![Disk Size](Images/4.png)
 
-1.  Open **Windows Security** settings.
-2.  Go to **Virus & threat protection** > **Manage settings**.
-3.  Turn **OFF** "Tamper Protection" and "Real-time protection".
+**4. Verification:**
+Before starting, ensure your settings look like the summary below.
+![Settings Summary](Images/5.png)
 
-> **Visual Check:** Ensure all toggles are set to Off:
->
-> ![Windows Defender Disabled](Images/defender-off.png)
+---
 
-*Note: For a permanent fix, it is recommended to disable Defender via Group Policy (gpedit.msc) as described in the advanced instructions above.*
+## Phase 2: Windows Installation
 
-## Phase 3: Running the Installer
-1.  **Open PowerShell as Administrator:**
-    * Right-click the Start button.
-    * Select **Windows PowerShell (Admin)**.
+**1. Language Selection:**
+Boot the VM. Select your language (English US) and keyboard layout.
+![Windows Setup Language](Images/6.png)
 
-> ![PowerShell Admin Menu](Images/powershell-admin-menu.png)
+**2. Select Operating System:**
+Choose **Windows 10 Pro**. (Pro is recommended over Home for better Group Policy management, which is useful for disabling Windows Defender later).
+![Select Windows 10 Pro](Images/7.png)
 
-2.  **Download the Script:**
-    Copy and paste the download command (found in the "Installation instruction" section above) into the PowerShell window and hit Enter.
+**3. Partitioning:**
+Select "Custom: Install Windows only" and choose the **70.0 GB Unallocated Space** you created earlier.
+![Disk Selection](Images/8.png)
 
-3.  **Unblock and Execute:**
-    Run the following commands one by one:
-    ```powershell
-    Unblock-File .\install.ps1
-    Set-ExecutionPolicy Unrestricted -Force
-    .\install.ps1
-    ```
+---
 
-> **Visual Check:** Your PowerShell window should look like this before you hit Enter on the final command:
->
-> ![PowerShell Commands](Images/powershell-commands.png)
+## Phase 3: Out-of-Box Experience (OOBE) Setup
 
-4.  **Enter Your Password:**
-    The script will ask for your current user password. This is required so the VM can automatically log back in after rebooting.
+**1. Personal Setup:**
+When asked how you would like to set up, select **Set up for personal use**.
+![Personal Use Selection](Images/9.png)
 
-## Phase 4: The Waiting Game
-Once the installation starts, a **Boxstarter** window (a black console window) will appear.
-* **DO NOT CLOSE THIS WINDOW.**
-* The VM will restart multiple times automatically.
-* This process can take **1–3 hours** depending on your internet speed.
+**2. Account Creation (Offline):**
+**Important:** To keep your malware lab isolated and avoid forced updates, select **Offline account** (sometimes located under "Sign in options" or disconnected from the internet).
+![Offline Account](Images/10.png)
 
-> ![Boxstarter Installation Window](Images/boxstarter-running.png)
+*(Proceed through the rest of the Windows prompts, declining data collection and Cortana to keep the VM lightweight.)*
 
-## Phase 5: Success!
-You will know the installation is complete when:
-1.  The Boxstarter window closes.
-2.  Your desktop wallpaper changes to the FLARE-VM logo.
-3.  You see a folder named `FLARE` on your desktop.
+---
 
-> ![Final FLARE Desktop](Images/flare-desktop-final.png)
+## Phase 4: FLARE-VM Script Installation
+*(Screenshots and steps for the PowerShell script execution will be added here once the VM is booted and ready.)*
 
-**🛑 STOP:** Take a **VM Snapshot** immediately. This is your clean slate for malware analysis.
-
-
-
-
-
+![Images/11](Images/11.png)
+![Images/12](Images/12.png)
+![Images/13](Images/13.png)
+![Images/14](Images/14.png)
+![Images/15](Images/15.png)
+![Images/16](Images/16.png)
+![Images/17](Images/17.png)
+![Images/18](Images/18.png)
+![Images/19](Images/19.png)
 
 
 
@@ -256,3 +245,64 @@ Subscribe to the FLARE mailing list for community announcements! Email "subscrib
 
 ## Legal Notice
 > This download configuration script is provided to assist cyber security analysts in creating handy and versatile toolboxes for malware analysis environments. It provides a convenient interface for them to obtain a useful set of analysis tools directly from their original sources. Installation and use of this script is subject to the Apache 2.0 License. You as a user of this script must review, accept and comply with the license terms of each downloaded/installed package. By proceeding with the installation, you are accepting the license terms of each package, and acknowledging that your use of each package will be subject to its respective license terms.
+
+---
+
+---
+# 🔰 Layman's Installation Guide (Step-by-Step)
+
+This guide provides a visual walkthrough for setting up your lab environment using VirtualBox and Windows 10, specifically tailored for FLARE-VM.
+
+## Phase 1: Virtual Machine Configuration
+
+**1. Create New VM:**
+Open VirtualBox and create a new machine. Name it `FlareVM` and select your Windows 10 ISO.
+![VM Creation](Images/2.png)
+
+**2. Hardware Allocation:**
+* **Memory (RAM):** Set to at least **4096 MB** (4GB).
+* **Processors:** Allocate at least **2 CPUs** for smooth performance.
+![Hardware Settings](Images/3.png)
+
+**3. Hard Disk Setup (Crucial):**
+Set the disk size to at least **70.00 GB**. FLARE-VM requires significant space for tools; the default 50GB is often insufficient.
+![Disk Size](Images/4.png)
+
+**4. Verification:**
+Before starting, ensure your settings look like the summary below.
+![Settings Summary](Images/5.png)
+
+---
+
+## Phase 2: Windows Installation
+
+**1. Language Selection:**
+Boot the VM. Select your language (English US) and keyboard layout.
+![Windows Setup Language](Images/6.png)
+
+**2. Select Operating System:**
+Choose **Windows 10 Pro**. (Pro is recommended over Home for better Group Policy management, which is useful for disabling Windows Defender later).
+![Select Windows 10 Pro](Images/7.png)
+
+**3. Partitioning:**
+Select "Custom: Install Windows only" and choose the **70.0 GB Unallocated Space** you created earlier.
+![Disk Selection](Images/8.png)
+
+---
+
+## Phase 3: Out-of-Box Experience (OOBE) Setup
+
+**1. Personal Setup:**
+When asked how you would like to set up, select **Set up for personal use**.
+![Personal Use Selection](Images/9.png)
+
+**2. Account Creation (Offline):**
+**Important:** To keep your malware lab isolated and avoid forced updates, select **Offline account** (sometimes located under "Sign in options" or disconnected from the internet).
+![Offline Account](Images/10.png)
+
+*(Proceed through the rest of the Windows prompts, declining data collection and Cortana to keep the VM lightweight.)*
+
+---
+
+## Phase 4: FLARE-VM Script Installation
+*(Screenshots and steps for the PowerShell script execution will be added here once the VM is booted and ready.)*
